@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 import 'frontend_elements/use_subdirectory_check_box.dart';
 
@@ -46,7 +47,12 @@ class MyHomePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                  color: Color.fromARGB(255, 181, 212, 236),
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 181, 212, 236),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12.0),
+                    ),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
@@ -72,7 +78,12 @@ class MyHomePage extends StatelessWidget {
           child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
-                color: Colors.orangeAccent,
+                decoration: const BoxDecoration(
+                  color: Colors.orangeAccent,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
                 child: Column(
                   children: [
                     Spacer(),
@@ -92,7 +103,10 @@ class MyHomePage extends StatelessWidget {
                                     ),
                                     Icon(Icons.search),
                                     Spacer(),
-                                    Text("Search"),
+                                    Text("Search",
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold)),
                                     Spacer(flex: 2),
                                   ],
                                 ),
