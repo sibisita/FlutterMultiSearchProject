@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import 'frontend_elements/use_subdirectory_check_box.dart';
 
