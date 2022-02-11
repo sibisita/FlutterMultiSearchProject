@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'frontend_elements/use_subdirectory_check_box.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -36,41 +38,73 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Row(children: [
-      (Expanded(
-          flex: 6,
+        body: Container(
+      color: Colors.blue,
+      child: Row(children: [
+        (Expanded(
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  color: Color.fromARGB(255, 181, 212, 236),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      autocorrect: false, autofocus: true,
+                      cursorColor: Colors.redAccent, cursorWidth: 5,
+                      cursorHeight: 30,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(10),
+                          focusColor: Colors.blue[100],
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(width: 80)),
+                          hintText:
+                              "  Enter the values to be searched here...\n  Each line is treated as a seperated value"),
+                      keyboardType: TextInputType.multiline,
+                      minLines: 30, //Normal textInputField will be displayed
+                      maxLines:
+                          null, // when user presses enter it will adapt to it
+                    ),
+                  )),
+            ))),
+        Expanded(
+          flex: 5,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-                color: Color.fromARGB(255, 181, 212, 236),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    autocorrect: false, autofocus: true,
-                    cursorColor: Colors.redAccent, cursorWidth: 5,
-                    cursorHeight: 30,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
-                        focusColor: Colors.blue[100],
-                        border: UnderlineInputBorder(
-                            borderSide: BorderSide(width: 80)),
-                        hintText:
-                            "  Enter the values to be searched here...\n  Each line is treated as a seperated value"),
-                    keyboardType: TextInputType.multiline,
-                    minLines: 30, //Normal textInputField will be displayed
-                    maxLines:
-                        null, // when user presses enter it will adapt to it
-                  ),
-                )),
-          ))),
-      Expanded(
-        flex: 5,
-        child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              color: Colors.orangeAccent,
-            )),
-      )
-    ]));
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                color: Colors.orangeAccent,
+                child: Column(
+                  children: [
+                    Spacer(),
+                    UseSubdirectoryCheckBox(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 100,
+                                child: Row(
+                                  children: [
+                                    Spacer(
+                                      flex: 2,
+                                    ),
+                                    Icon(Icons.search),
+                                    Spacer(),
+                                    Text("Search"),
+                                    Spacer(flex: 2),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )),
+                    )
+                  ],
+                ),
+              )),
+        )
+      ]),
+    ));
   }
 }
