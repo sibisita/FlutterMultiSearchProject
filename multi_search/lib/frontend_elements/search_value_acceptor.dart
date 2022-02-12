@@ -21,7 +21,7 @@ class _SearchValueAcceptorState extends State<SearchValueAcceptor> {
   }
 
   void _printLatestValue() {
-    print('Second text field: ${myController.text}');
+    //print('Second text field: ${myController.text}');
   }
 
   @override

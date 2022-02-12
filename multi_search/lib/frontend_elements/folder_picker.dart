@@ -30,7 +30,7 @@ class _FolderPickerState extends State<FolderPicker> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                _path,
+                _path.split("\\").join("\\ "),
                 softWrap: true,
                 textAlign: TextAlign.center,
               ),
@@ -43,7 +43,8 @@ class _FolderPickerState extends State<FolderPicker> {
                             .openFolderPickerDialog() ??
                         "Select a Folder";
                     setState(() {
-                      _path = path.split("\\").join(" \\ ");
+                      _path = path;
+                      //print(_path);
                     });
                   },
                   child: Row(
