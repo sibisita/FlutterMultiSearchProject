@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_search/routes.dart';
 
 import 'frontend_elements/folder_picker.dart';
 import 'frontend_elements/search_button.dart';
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Multi Search',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      initialRoute: "/",
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
@@ -35,10 +37,10 @@ class MyHomePage extends StatelessWidget {
         body: Container(
       color: Colors.blue,
       child: Row(children: [
-        (Expanded(
+        (const Expanded(
             flex: 7,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: SearchValueAcceptor(),
             ))),
         Expanded(
@@ -54,19 +56,33 @@ class MyHomePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Spacer(),
-                    FolderPicker(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                              hoverColor: Colors.orangeAccent,
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/about');
+                              },
+                              child: const Icon(Icons.info)),
+                        )
+                      ],
+                    ),
+                    const Spacer(),
+                    const FolderPicker(
                       icon: Icons.folder,
                       buttonText: "Pick the folder to search.",
                     ),
-                    UseSubdirectoryCheckBox(),
-                    Spacer(),
-                    FolderPicker(
+                    const UseSubdirectoryCheckBox(),
+                    const Spacer(),
+                    const FolderPicker(
                       icon: Icons.save,
                       buttonText: "Pick the folder to save the results.",
                     ),
-                    Spacer(),
-                    SearchButton()
+                    const Spacer(),
+                    const SearchButton()
                   ],
                 ),
               )),
