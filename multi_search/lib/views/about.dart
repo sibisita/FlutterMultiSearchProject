@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
   final String letter = '''
-Hi everyone,
+Hi,
 
 Multi Search was initially created to address a situation at my workplace. I was asked to find occurance details of 50 IPs in a folder containing 2000+ backup files. There was no readily available tool to do so. So I created this application. 
 
 Before using flutter, I created similar application using python and TKINTER library. But that application was extremely slow.
 
-So when flutter officially bought flutter for windows, I created this.
+So when flutter officially announced flutter for windows, I created this.
 
 You can find the full source code for this in the below github repository.
 
 https://github.com/sibisita/FlutterMultiSearchProject.git
 
-Thanks,
+All the best,
 
-Sibi
+Sibi.
 ''';
 
   @override

@@ -16,7 +16,9 @@ class SearchButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(Colors.blue[700]),
             shadowColor: MaterialStateProperty.all(Colors.amber),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/progress');
+          },
           child: Column(
             children: [
               SizedBox(
