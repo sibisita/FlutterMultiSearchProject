@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:multi_search/providers/folder_location_providers.dart';
+import 'package:provider/provider.dart';
 
 class UseSubdirectoryCheckBox extends StatefulWidget {
   const UseSubdirectoryCheckBox({
@@ -11,19 +13,20 @@ class UseSubdirectoryCheckBox extends StatefulWidget {
 }
 
 class _UseSubdirectoryCheckBoxState extends State<UseSubdirectoryCheckBox> {
-  bool valueOffCheckbox = false;
   @override
   Widget build(BuildContext context) {
+    bool valueOffCheckbox =
+        context.watch<FolderLocationProvider>().includeSubDirectory;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Use sub-directories : "),
         Checkbox(
           value: valueOffCheckbox,
-          onChanged: (value) {
-            setState(() {
-              valueOffCheckbox = value ?? false;
-            });
+          onChanged: (valuen) {
+            context
+                .read<FolderLocationProvider>()
+                .includeSubDirectoryUpdater(valuen);
           },
         ),
       ],

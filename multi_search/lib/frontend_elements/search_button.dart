@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/folder_location_providers.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({

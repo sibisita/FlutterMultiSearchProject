@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_desktop_folder_picker/flutter_desktop_folder_picker.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/folder_location_providers.dart';
 
 class FolderPicker extends StatefulWidget {
+  ///type = 0 for search, type =1 for save
   final String buttonText;
   final IconData icon;
+  final int type;
 
   const FolderPicker({
     Key? key,
     required this.buttonText,
     required this.icon,
+    required this.type,
   }) : super(key: key);
   @override
   _FolderPickerState createState() => _FolderPickerState();
 }
 
 class _FolderPickerState extends State<FolderPicker> {
-  String _path = "Select a folder.";
   @override
   Widget build(BuildContext context) {
+    String _path = (widget.type == 0)
+        ? context.watch<FolderLocationProvider>().searchlocation
+        : context.watch<FolderLocationProvider>().savelocation;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -41,11 +49,15 @@ class _FolderPickerState extends State<FolderPicker> {
                   onPressed: () async {
                     String? path = await FlutterDesktopFolderPicker
                             .openFolderPickerDialog() ??
-                        "Select a Folder";
-                    setState(() {
-                      _path = path;
-                      //print(_path);
-                    });
+                        _path;
+
+                    (widget.type == 0)
+                        ? context
+                            .read<FolderLocationProvider>()
+                            .searchLocationUpdater(path)
+                        : context
+                            .read<FolderLocationProvider>()
+                            .saveLocationUpdater(path);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

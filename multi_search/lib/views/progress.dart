@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:multi_search/frontend_elements/log_stream.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/folder_location_providers.dart';
 
 class ProgressPage extends StatefulWidget {
   const ProgressPage({Key? key}) : super(key: key);
@@ -33,7 +36,17 @@ class _ProgressPageState extends State<ProgressPage> {
                         child: LinearProgressIndicator(value: value)),
                   ),
                   Center(
-                    child: Text("Files remaining : "),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            "Search Location: ${context.read<FolderLocationProvider>().searchlocation}"),
+                        Text(
+                            "Save Location: ${context.read<FolderLocationProvider>().savelocation}"),
+                        Text("Files remaining: "),
+                      ],
+                    ),
                   )
                 ]),
               ),

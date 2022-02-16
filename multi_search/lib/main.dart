@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multi_search/multi_search_provider.dart';
+import 'package:multi_search/providers/folder_location_providers.dart';
 import 'package:multi_search/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +9,12 @@ import 'frontend_elements/search_value_acceptor.dart';
 import 'frontend_elements/use_subdirectory_check_box.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => FolderLocationProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 /// Makes `Counter` readable inside the devtools by listing all of its properties
@@ -78,12 +83,14 @@ class MyHomePage extends StatelessWidget {
                     const FolderPicker(
                       icon: Icons.folder,
                       buttonText: "Pick the folder to search.",
+                      type: 0,
                     ),
                     const UseSubdirectoryCheckBox(),
                     const Spacer(),
                     const FolderPicker(
                       icon: Icons.save,
                       buttonText: "Pick the folder to save the results.",
+                      type: 1,
                     ),
                     const Spacer(),
                     const SearchButton()
