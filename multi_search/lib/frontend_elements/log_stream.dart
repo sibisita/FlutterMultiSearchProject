@@ -10,12 +10,12 @@ class LogStream extends StatefulWidget {
 }
 
 class _LogStreamState extends State<LogStream> {
-  ScrollController LogScrollController = ScrollController();
+  ScrollController logScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
-        controller: LogScrollController,
+        controller: logScrollController,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           for (var i = 0; i < 120; i++)
             Padding(

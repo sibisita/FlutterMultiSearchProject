@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_search/providers/folder_location_providers.dart';
+import 'package:multi_search/providers/search_values_provider.dart';
 import 'package:multi_search/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => FolderLocationProvider()),
+      ChangeNotifierProvider(create: (_) => SearchValuesProvider()),
     ],
     child: const MyApp(),
   ));

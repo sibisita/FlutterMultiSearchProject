@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../backend_logic/main_search_logic.dart';
 import '../providers/folder_location_providers.dart';
+import '../providers/search_values_provider.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({
@@ -21,6 +23,15 @@ class SearchButton extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.of(context).pushNamed('/progress');
+            mainSearchLogic(
+                searchLocation:
+                    context.read<FolderLocationProvider>().searchlocation,
+                saveLocation:
+                    context.read<FolderLocationProvider>().savelocation,
+                useSubdirectory:
+                    context.read<FolderLocationProvider>().includeSubDirectory,
+                searchValues:
+                    context.read<SearchValuesProvider>().searchValuesString);
           },
           child: Column(
             children: [

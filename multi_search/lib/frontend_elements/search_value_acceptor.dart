@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/search_values_provider.dart';
 
 class SearchValueAcceptor extends StatefulWidget {
   const SearchValueAcceptor({
@@ -10,7 +13,7 @@ class SearchValueAcceptor extends StatefulWidget {
 }
 
 class _SearchValueAcceptorState extends State<SearchValueAcceptor> {
-  final myController = TextEditingController();
+  TextEditingController myController = TextEditingController();
 
   @override
   void dispose() {
@@ -20,20 +23,25 @@ class _SearchValueAcceptorState extends State<SearchValueAcceptor> {
     super.dispose();
   }
 
-  void _printLatestValue() {
-    //print('Second text field: ${myController.text}');
-  }
-
   @override
   void initState() {
     super.initState();
 
     // Start listening to changes.
-    myController.addListener(_printLatestValue);
+    myController.text =
+        Provider.of<SearchValuesProvider>(context, listen: false)
+            .searchValuesString;
+    myController.addListener(() {
+      context
+          .read<SearchValuesProvider>()
+          .searchvaluesUpdater(myController.text);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    //myController.text = "Hello";
+
     return Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 181, 212, 236),
@@ -54,6 +62,7 @@ class _SearchValueAcceptorState extends State<SearchValueAcceptor> {
                 border: UnderlineInputBorder(borderSide: BorderSide(width: 80)),
                 hintText:
                     "  Enter the values to be searched here...\n  Each line is treated as a seperated value"),
+
             keyboardType: TextInputType.multiline,
             minLines: 30, //Normal textInputField will be displayed
             maxLines: null, // when user presses enter it will adapt to it
