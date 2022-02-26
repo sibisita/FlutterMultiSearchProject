@@ -23,15 +23,29 @@ class SearchButton extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.of(context).pushNamed('/progress');
-            mainSearchLogic(
-                searchLocation:
-                    context.read<FolderLocationProvider>().searchlocation,
-                saveLocation:
-                    context.read<FolderLocationProvider>().savelocation,
-                useSubdirectory:
-                    context.read<FolderLocationProvider>().includeSubDirectory,
-                searchValues:
-                    context.read<SearchValuesProvider>().searchValuesString);
+            if (context.read<FolderLocationProvider>().searchlocation ==
+                "Select a folder.") {
+              print("Select a folder to search.");
+            } else if (context.read<FolderLocationProvider>().savelocation ==
+                "Select a folder.") {
+              print("Select a folder to save results.");
+            } else if (context
+                    .read<SearchValuesProvider>()
+                    .searchValuesString ==
+                "") {
+              print("Enter Values to search");
+            } else {
+              mainSearchLogic(
+                  searchLocation:
+                      context.read<FolderLocationProvider>().searchlocation,
+                  saveLocation:
+                      context.read<FolderLocationProvider>().savelocation,
+                  useSubdirectory: context
+                      .read<FolderLocationProvider>()
+                      .includeSubDirectory,
+                  searchValues:
+                      context.read<SearchValuesProvider>().searchValuesString);
+            }
           },
           child: Column(
             children: [

@@ -58,8 +58,11 @@ class _SearchValueAcceptorState extends State<SearchValueAcceptor> {
             cursorHeight: 30,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
-                focusColor: Colors.blue[100],
-                border: UnderlineInputBorder(borderSide: BorderSide(width: 80)),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                border: InputBorder.none,
                 hintText:
                     "  Enter the values to be searched here...\n  Each line is treated as a seperated value"),
 

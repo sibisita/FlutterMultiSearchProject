@@ -5,7 +5,7 @@ class SearchValuesProvider extends ChangeNotifier {
   String get searchValuesString => _searchValuesString;
 
   void searchvaluesUpdater(values) {
-    _searchValuesString = values;
+    _searchValuesString = values.toLowerCase();
     notifyListeners();
   }
 }
